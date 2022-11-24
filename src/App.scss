@@ -1,0 +1,38 @@
+main{
+  margin-top: 100px;
+}
+nav.MuiAppBar-root a{
+  padding: 6px 8px;
+  text-decoration: none;
+  color: #fff;
+  text-transform: uppercase;
+  &.active{
+    color: orange;
+  }
+}
+.App{
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .modal__content {
+    background-color: #fff;
+    width: 485px;
+    max-height: 80vh;
+    padding: 24px;
+    overflow-y: auto;
+    outline: none;
+    box-sizing: border-box;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    .MuiTextField-root{
+      margin-bottom: 20px;
+    }
+  }
+}
