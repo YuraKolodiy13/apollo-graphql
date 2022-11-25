@@ -6,7 +6,7 @@ import Fade from "@mui/material/Fade";
 import Button from "@mui/material/Button";
 import {useSelector} from "react-redux";
 import {useMutation} from "@apollo/client";
-import {CREATE_POST, GET_POSTS} from "../../../apollo/posts";
+import {CREATE_POST, GET_POSTS, UPDATE_POST} from "../../../apollo/posts";
 
 const PostModal = ({isPostModalOpen, closeModal, post, variables}) => {
 
@@ -27,16 +27,14 @@ const PostModal = ({isPostModalOpen, closeModal, post, variables}) => {
     //   })
     // }
   });
-  // const [editPost] = useEditPostMutation();
-  const [newPost, setNewPost] = useState({title: '', body: '', idUser: 10})
+  const [editPost] = useMutation(UPDATE_POST);
+  const [newPost, setNewPost] = useState({title: '', body: '', user_id: 10})
 
-  const handleCreatePost = () => {
+  const handleCreatePost = async () => {
     if(post){
-      // editPost(newPost);
+      await editPost({variables: newPost});
     }else {
-      createPost({
-        variables: newPost
-      });
+      await createPost({variables: newPost});
     }
     closeModal();
   }

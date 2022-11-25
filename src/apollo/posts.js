@@ -31,3 +31,29 @@ export const REMOVE_POST = gql`
     }
   }
 `
+
+export const UPDATE_POST = gql`
+  mutation($id: ID!, $title: String, $body: String){
+    updatePost(id: $id, title: $title, body: $body){
+      id
+      title
+      body
+    }
+  }
+`
+
+export const GET_POST = gql`
+  query($id: ID!){
+    post: Post(id: $id){
+      id
+      title
+      body
+      comments: Comments {
+        id
+        email
+        name
+        body
+      }
+    }
+  }
+`;

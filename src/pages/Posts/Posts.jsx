@@ -1,8 +1,4 @@
 import React, {useState} from 'react';
-// import {
-//   useGetPostsQuery,
-//   useRemovePostMutation,
-// } from "../../store/reqres/reqres.api";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
@@ -11,7 +7,6 @@ import {Link} from "react-router-dom";
 import IconButton from "@mui/material/IconButton";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
-import {useSelector} from "react-redux";
 import Button from "@mui/material/Button";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
 import Typography from "@mui/material/Typography";
@@ -31,9 +26,9 @@ const Posts = () => {
   const [isPostModalOpen, setIsPostModalOpen] = useState(false);
   const [post, setPost] = useState(null);
 
-  const handleRemovePost = (id) => {
+  const handleRemovePost = async (id) => {
     // setPage(Math.ceil((posts.totalCount - 1) / itemsPerPage));
-    removePost({variables: {id}});
+    await removePost({variables: {id}});
   }
   const handleEditPost = (post) => {
     setPost(post);
@@ -64,13 +59,11 @@ const Posts = () => {
         />
       )}
 
-      {console.log(data.posts.length, 'posts')}
-
       <List>
         {data.posts?.map(item =>
           <ListItem
             key={item.id}
-            secondaryAction={item.idUser === {}?.id &&
+            secondaryAction={item.user_id === {}?.id &&
               <>
                 <IconButton edge="end" aria-label="edit" onClick={() => handleEditPost(item)}>
                   <EditIcon />

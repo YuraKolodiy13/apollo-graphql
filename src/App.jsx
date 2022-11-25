@@ -4,6 +4,7 @@ import './App.scss';
 import Homepage from "./pages/Homepage/Homepage";
 import Posts from "./pages/Posts/Posts";
 import Header from "./components/Header/Header";
+import Post from "./pages/Post/Post";
 
 const App = () => {
 
@@ -15,6 +16,7 @@ const App = () => {
           <Routes>
             <Route path='/' element={<Homepage/>}/>
             <Route path='/posts' element={<Posts/>}/>
+            <Route path='/posts/:id' element={<Post/>}/>
           </Routes>
         </main>
       </BrowserRouter>
